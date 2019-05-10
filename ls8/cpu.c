@@ -210,6 +210,14 @@ void cpu_run(struct cpu *cpu)
                 } else {
                     cpu->pc += 2;
                 }
+                break ;
+            case JNE:
+                if ((cpu->flag & CMP_E) != CMP_E) { //checking in CMP Equal flag is false if so, jump to the adress in register
+                    cpu->pc = cpu->reg[operandA];  // and if it's not skip it
+                } else {
+                    cpu->pc += 2;
+                }
+                break ;
             case HLT:
                 running = 0;
                 break;
