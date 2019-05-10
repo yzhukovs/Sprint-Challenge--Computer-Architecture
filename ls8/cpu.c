@@ -201,6 +201,9 @@ void cpu_run(struct cpu *cpu)
             case RET:
                 ret(cpu);
                 break ;
+            case JMP:
+                cpu->pc = cpu->reg[operandA];
+                break;
             case HLT:
                 running = 0;
                 break;
