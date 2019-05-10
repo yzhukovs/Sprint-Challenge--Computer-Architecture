@@ -204,6 +204,12 @@ void cpu_run(struct cpu *cpu)
             case JMP:
                 cpu->pc = cpu->reg[operandA];
                 break;
+            case JEQ:
+                if ((cpu->flag & CMP_E) == CMP_E) { //checking in CMP Equal flag is true if so, jump to the adress in register
+                    cpu->pc = cpu->reg[operandA];  // and if it's not skip it
+                } else {
+                    cpu->pc += 2;
+                }
             case HLT:
                 running = 0;
                 break;
